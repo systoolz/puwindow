@@ -1,0 +1,116 @@
+#undef RC_INVOKED
+#include <commctrl.h>
+#define RC_INVOKED 1
+#include <windows.h>
+#include "PUWindow.h"
+
+#ifndef IDC_STATIC
+#define IDC_STATIC (-1)
+#endif
+
+#ifndef WC_STATIC
+#define WC_STATIC "Static"
+#endif
+
+IDI_ICN ICON "PUWindow.ico"
+1 24 "Manifest.xml"
+
+IDB_LST BITMAP "puwicons.bmp"
+
+#define R_CAPTION "Pickup Window"
+#define R_VERSION "2.0"
+#define R_INTNAME "PUWindow"
+#define R_COPYEAR "\xA9 SysTools 2023"
+
+1 VERSIONINFO
+FILEVERSION 2,0,0,0
+PRODUCTVERSION 2,0,0,0
+FILEOS 4
+FILETYPE 1
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"
+    BEGIN
+      VALUE "CompanyName", "SysTools"
+      VALUE "FileDescription", R_CAPTION
+      VALUE "FileVersion", R_VERSION
+      VALUE "LegalCopyright", R_COPYEAR
+      VALUE "OriginalFilename", R_INTNAME ".exe"
+      VALUE "InternalName", R_INTNAME
+      VALUE "ProductName", R_CAPTION
+      VALUE "ProductVersion", R_VERSION
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1252
+  END
+END
+
+IDD_DLG DIALOG 0, 0, 320, 214
+STYLE DS_3DLOOK | DS_CENTER | DS_MODALFRAME | DS_SHELLFONT | WS_CAPTION | WS_VISIBLE | WS_GROUP | WS_POPUP | WS_SYSMENU
+CAPTION R_CAPTION " v" R_VERSION
+FONT 8, "Ms Shell Dlg"
+BEGIN
+  AUTOCHECKBOX    "Cursor position", IDC_RPOS, 12, 7, 62, 8
+  LTEXT           "X", IDC_STATIC, 12, 24, 6, 9
+  EDITTEXT        IDC_POSX, 22, 22, 30, 12, ES_AUTOHSCROLL
+  LTEXT           "Y", IDC_STATIC, 57, 24, 6, 9
+  EDITTEXT        IDC_POSY, 67, 22, 30, 12, ES_AUTOHSCROLL
+  AUTOCHECKBOX    "Minimize", IDC_WMIN, 102, 24, 43, 8
+  CONTROL         "", IDC_VIEW, WC_STATIC, SS_SUNKEN | SS_ICON | SS_NOTIFY, 147, 23, 16, 16
+
+  AUTOCHECKBOX    "Pixel color", IDC_RCLR, 12, 42, 48, 8
+  LTEXT           "", IDC_CLR4, 62, 42, 12, 10, SS_OWNERDRAW | SS_NOTIFY
+
+  EDITTEXT        IDC_CLR1,  12, 57, 45, 12, ES_AUTOHSCROLL
+  EDITTEXT        IDC_CLR2,  62, 57, 45, 12, ES_AUTOHSCROLL
+  EDITTEXT        IDC_CLR3, 112, 57, 45, 12, ES_AUTOHSCROLL
+
+  AUTOCHECKBOX    "Window text", IDC_RTXT, 12, 77, 55, 8
+  CONTROL         "", IDC_STXT, WC_STATIC, SS_SUNKEN | SS_ICON | SS_NOTIFY, 12, 93, 16, 16
+  EDITTEXT        IDC_TEXT, 27, 92, 130, 12, ES_AUTOHSCROLL
+
+  CONTROL         "", IDC_SENB, WC_STATIC, SS_SUNKEN | SS_ICON | SS_NOTIFY,  12, 113, 16, 16
+  LTEXT           "Enable",  IDC_STATIC,  27, 113, 23, 9
+  CONTROL         "", IDC_SDIS, WC_STATIC, SS_SUNKEN | SS_ICON | SS_NOTIFY,  12, 132, 16, 16
+  LTEXT           "Disable", IDC_STATIC,  27, 132, 24, 9
+  CONTROL         "", IDC_STOP, WC_STATIC, SS_SUNKEN | SS_ICON | SS_NOTIFY,  64, 113, 16, 16
+  LTEXT           "On top",  IDC_STATIC,  79, 113, 22, 9
+  CONTROL         "", IDC_SNRM, WC_STATIC, SS_SUNKEN | SS_ICON | SS_NOTIFY,  64, 132, 16, 16
+  LTEXT           "Normal",  IDC_STATIC,  79, 132, 23, 9
+  CONTROL         "", IDC_SRSZ, WC_STATIC, SS_SUNKEN | SS_ICON | SS_NOTIFY, 116, 113, 16, 16
+  LTEXT           "Resize",  IDC_STATIC, 131, 113, 22, 9
+  CONTROL         "", IDC_STRN, WC_STATIC, SS_SUNKEN | SS_ICON | SS_NOTIFY, 116, 132, 16, 16
+  LTEXT           "Alpha",   IDC_STATIC, 131, 132, 19, 9
+
+  LTEXT           "Alpha transparency level (NT 5+)", IDC_STATIC, 12, 147, 104, 9
+  LTEXT           "255", IDC_AVAL, 137, 147, 13, 9, SS_LEFT, WS_EX_RIGHT
+  CONTROL         "", IDC_TRAN, TRACKBAR_CLASS, WS_TABSTOP | TBS_BOTH | TBS_NOTICKS, 12, 157, 145, 15
+
+  AUTOCHECKBOX    "Zoom screen area", IDC_ZOOM, 177, 7, 73, 8
+  AUTOCHECKBOX    "Crosshair", IDC_CRSS, 267, 7, 45, 8
+  LTEXT           "Zoom factor", IDC_STATIC, 177, 24, 39, 9
+  AUTORADIOBUTTON "x2", IDC_MUL1, 227, 24, 23, 8
+  AUTORADIOBUTTON "x4", IDC_MUL2, 257, 24, 23, 8
+  AUTORADIOBUTTON "x8", IDC_MUL3, 287, 24, 23, 8
+  LTEXT           "", IDC_ZRGN, 177, 42, 135, 135, SS_OWNERDRAW | SS_NOTIFY
+
+  LTEXT           "Some functions may require run this tool from Administrator account.", IDC_STATIC, 7, 177, 213, 9
+  LTEXT           R_COPYEAR " | http://systools.losthost.org/?misc", IDC_SITE, 7, 187, 166, 8, SS_OWNERDRAW | SS_NOTIFY
+  LTEXT           "Custom software development for your business or personal usage. Contact for more details.", IDC_STATIC, 7, 197, 288, 9
+END
+
+STRINGTABLE
+BEGIN
+  // ToolTipText (80 chars max: 79 + null)
+  IDS_TTT_VIEW "Drag and drop over a window to get properties"
+  IDS_TTT_STXT "Drag and drop over a window to paste text"
+  IDS_TTT_SENB "Drag and drop to enable an item"
+  IDS_TTT_SDIS "Drag and drop to disable an item"
+  IDS_TTT_STOP "Drag and drop to set window on top"
+  IDS_TTT_SNRM "Drag and drop to remove on top from window"
+  IDS_TTT_SRSZ "Drag and drop to allow resize of a window"
+  IDS_TTT_STRN "Drag and drop over a window to apply alpha"
+END
