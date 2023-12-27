@@ -10,4 +10,4 @@ Software homepage (you can download binary "PUWindow.exe" file here):
 
 http://systools.losthost.org/?misc#puwindow
 
-WOCARLib licensed under the Apache License, Version 2.0 (the "License") - see LICENSE file.
+Licensed under the Apache License, Version 2.0 (the "License") - see LICENSE file.
